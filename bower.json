@@ -1,0 +1,13 @@
+{
+  "name": "12-chatapp",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Tolgahan Çelik"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.7.9"
+  }
+}
