@@ -10,11 +10,11 @@ module.exports = () => {
             useCreateIndex: true,
         });
     mongoose.connection.on('open', () => {
-        //console.log('MongoDB: Connected.');
+        console.log('MongoDB: Connected.');
     });
 
     mongoose.connection.on('error', (error) => {
-        //console.log('MongoDB: Error', error);
+        console.log('MongoDB: Error', error);
     });
 
     //Mongoose Promise ayarlama.
