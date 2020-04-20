@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* GET chat home page. */
 router.get('/', (req, res, next) => {
-  res.render('chat');
+  console.log(req.user);
+  res.render('chat', {user: req.user});
 });
 
 module.exports = router;
