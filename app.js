@@ -40,10 +40,10 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 // express-session (ADD)
 app.use(session({
   store: redisStore,
-  secret: 'process.env.SESSION_SECRET_KEY',
+  secret: process.env.SESSION_SECRET_KEY,
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 14 * 24 * 3600000 }
+  cookie: { maxAge: 14 * 24 * 3600000  }
 }));
 
 // passport.js (ADD)

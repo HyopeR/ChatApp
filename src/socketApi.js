@@ -1,4 +1,5 @@
 const socketio = require('socket.io');
+const socketAuthorization = require('../middleware/socketAuthorization');
 const io = socketio();
 
 const socketApi = {
@@ -6,10 +7,11 @@ const socketApi = {
     io
 };
 
-/**
- * Redis adapter
- */
+// Socket authorization
+io.use(socketAuthorization);
+
 /*
+    Redis adapter;
     Redis adapter sayesinde uygulama 2 ayrı portta çalıştırılıyor olsa bile
     socket.io bütün portlara dataları broadcast eder.
  */
@@ -20,7 +22,7 @@ io.adapter(redisAdapter({
 }));
 
 io.on('connection', socket => {
-    console.log('A user logged in.');
+    console.log('A user logged in with name ' + socket.request.user.name);
 
     socket.broadcast.emit('hello');
 });
