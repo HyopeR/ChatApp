@@ -8,6 +8,8 @@ app.controller('chatController', ['$scope', ($scope) => {
     $scope.activeTab = 1; // 1 Chat tab, 2 Online user tab
     $scope.chatClicked = false;
     $scope.chatName = '';
+    $scope.roomId = '';
+    $scope.message = '';
 
     /**
      * Socket.io event handling.
@@ -34,7 +36,16 @@ app.controller('chatController', ['$scope', ($scope) => {
 
     $scope.switchRoom = (room) => {
         $scope.chatName = room.name;
+        $scope.roomId = room.id;
         $scope.chatClicked = true;
+    };
+
+    $scope.newMessage = () => {
+        socket.emit('newMessage', {
+           message: $scope.message,
+           roomId: $scope.roomId
+        });
+        $scope.message = '';
     };
 
     $scope.changeTab = tab => {

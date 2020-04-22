@@ -514,6 +514,10 @@ ul, li {
     }
 }
 
+.send {
+    cursor: pointer;
+}
+
 /*Scroll Bar Exstras*/
 
 ::-webkit-scrollbar {

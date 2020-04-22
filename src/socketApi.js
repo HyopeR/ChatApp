@@ -10,6 +10,7 @@ const socketApi = {
 // Libs
 const Users = require('./lib/Users');
 const Rooms = require('./lib/Rooms');
+const Messages = require('./lib/Messages');
 
 // Socket authorization
 io.use(socketAuthorization);
@@ -52,6 +53,16 @@ io.on('connection', socket => {
             io.emit('roomList', rooms);
         });
     });
+
+    socket.on('newMessage', data => {
+        console.log(data);
+        Messages.upsert({
+            ...data,
+            username: socket.request.user.name,
+            surname: socket.request.user.surname
+        })
+    });
+
 });
 
 module.exports = socketApi;
