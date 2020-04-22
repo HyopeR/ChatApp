@@ -1,4 +1,14 @@
-app.controller('chatController', ['$scope', 'chatFactory', ($scope, chatFactory) => {
+app.controller('chatController', ['$scope', 'userFactory', 'chatFactory',  ($scope, userFactory, chatFactory) => {
+
+    /**
+     * İnitialization
+     */
+    function init() {
+        userFactory.getUser().then(user => {
+            $scope.user = user;
+        })
+    }
+    init();
 
     /**
      * Angular variables.
@@ -11,6 +21,8 @@ app.controller('chatController', ['$scope', 'chatFactory', ($scope, chatFactory)
     $scope.roomId = '';
     $scope.message = '';
     $scope.messages = [];
+
+    $scope.user = {};
 
     /**
      * Socket.io event handling.
