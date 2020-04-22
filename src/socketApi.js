@@ -28,6 +28,10 @@ io.adapter(redisAdapter({
 io.on('connection', socket => {
     console.log('A user logged in with name ' + socket.request.user.name);
 
+    Rooms.list(rooms => {
+        console.log(rooms);
+    });
+
     Users.upsert(socket.id, socket.request.user);
 
     Users.list(users => {
