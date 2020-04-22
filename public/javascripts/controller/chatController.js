@@ -29,6 +29,7 @@ app.controller('chatController', ['$scope', 'userFactory', 'chatFactory',  ($sco
      * Socket.io event handling.
      */
     const socket = io.connect('http://localhost:3000');
+
     socket.on('onlineList', users => {
         $scope.onlineList = users;
         $scope.$apply();
@@ -37,6 +38,18 @@ app.controller('chatController', ['$scope', 'userFactory', 'chatFactory',  ($sco
     socket.on('roomList', rooms => {
         $scope.roomList = rooms;
         $scope.$apply();
+    });
+
+    socket.on('receiveMessage', data => {
+
+        $scope.messages[data.roomId].push({
+            userId: data.userId,
+            username: data.username,
+            surname: data.surname,
+            message: data.message
+        });
+        $scope.$apply();
+
     });
 
     $scope.newRoom = () => {
