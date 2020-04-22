@@ -109,7 +109,7 @@ ul, li {
     border-radius: 50%;
 }
 
-.container .left .people {
+.tabArea {
     margin-left: -1px;
     border-right: 1px solid var(--light);
     border-left: 1px solid var(--light);
@@ -447,6 +447,7 @@ ul, li {
 .tab li {
     width: 50%;
     float: left;
+    cursor: pointer;
 }
 
 .tab li a {
