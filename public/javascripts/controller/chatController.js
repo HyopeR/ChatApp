@@ -65,11 +65,21 @@ app.controller('chatController', ['$scope', 'userFactory', 'chatFactory',  ($sco
     };
 
     $scope.newMessage = () => {
-        socket.emit('newMessage', {
-           message: $scope.message,
-           roomId: $scope.roomId
-        });
-        $scope.message = '';
+        if ($scope.message.trim() !== '') {
+            socket.emit('newMessage', {
+                message: $scope.message,
+                roomId: $scope.roomId
+            });
+
+            $scope.messages[$scope.roomId].push({
+                userId: $scope.user._id,
+                username: $scope.user.name,
+                surname: $scope.user.surname,
+                message: $scope.message,
+            });
+
+            $scope.message = '';
+        }
     };
 
     $scope.changeTab = tab => {
