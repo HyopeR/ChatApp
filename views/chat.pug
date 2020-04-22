@@ -53,10 +53,11 @@ block content
                   span.name Drake
                   span.preview howdoyoudoaspace
             .tab-rigth(ng-show="activeTab === 2")
-              ul.people
+              ul.people(ng-repeat="user in onlineList")
                 li.person
-                  span.name Tolgahan Çelik
-                  span.preview This is good.
+                  img(src="{{ user.meta.profilePhotoUrl }}")
+                  span.name {{ user.meta.name }} {{ user.meta.surname }}
+                  span.preview &nbsp;
           .bottom
             button New Group
         .right
